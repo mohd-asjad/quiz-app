@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title><%= topic.charAt(0).toUpperCase() + topic.slice(1) %> Quiz</title>
+</head>
+<body>
+    <div class="container">
+        <h1><%= topic.charAt(0).toUpperCase() + topic.slice(1) %> Quiz</h1>
+        <form action="/submit_quiz/<%= topic %>" method="post">
+            <% questions.forEach(question => { %>
+            <div class="question">
+                <p><%= question.text %></p>
+                <% question.options.forEach(option => { %>
+                <label>
+                    <input type="radio" name="q<%= question.id %>" value="<%= option %>">
+                    <%= option %>
+                </label><br>
+                <% }); %>
+            </div>
+            <% }); %>
+            <button type="submit">Submit Quiz</button>
+        </form>
+    </div>
+</body>
+</html>
