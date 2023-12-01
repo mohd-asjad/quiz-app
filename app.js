@@ -36,7 +36,7 @@ app.post('/submit_quiz/:topic', async (req, res) => {
 
     try {
         const db = await connectToMongoDB();
-        const collection = db.collection('mydb.quiz_responses'); // Replace with your collection name
+        const collection = db.collection('quiz_responses');
 
         // Insert submitted answers into the database
         await collection.insertOne({
@@ -64,8 +64,8 @@ app.get('/', (req, res) => {
 app.get('/', async (req, res) => {
   try {
     const db = await connectToMongoDB();
-    // Query MongoDB to retrieve data (replace 'collectionName' with your actual collection name)
-    const quizData = await db.collection('mydb.quiz_responses').find().toArray();
+    // Query MongoDB to retrieve data.
+    const quizData = await db.collection('quiz_responses').find().toArray();
     console.log('Quiz Data:', quizData);
     res.render('index', { quizData });
   } catch (error) {
